@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.recruitproject.mapper.recruitMapper">
+    <sql id="selectRecruits">
+        select jobseekerId,jobId,pass from recruit
+    </sql>
+
+    <update id="updateRecruit">
+        update recruit
+        <set>
+            <if test="jobseekerId != null">
+                jobseekerId = #{jobseekerId}
+            </if>
+            <if test="jobId != null">
+                jobId = #{jobId}
+            </if>
+            <if test="pass != null">
+                pass = #{pass}
+            </if>
+        </set>
+        where jobseekerId = #{jobseekerId}
+    </update>
+    <select id="selectRecruit" resultType="com.recruitproject.pojo.recruit">
+        <include refid="selectRecruits"/>
+        <where>
+            <if test="jobseekerId != null">
+                jobseekerId = #{jobseekerId}
+            </if>
+            <if test="jobId != null">
+                jobId = #{jobId}
+            </if>
+            <if test="pass != null">
+                pass = #{pass}
+            </if>
+        </where>
+    </select>
+    <select id="selectAll" resultType="com.recruitproject.pojo.recruit">
+        <include refid="selectRecruits"/>
+    </select>
+</mapper>

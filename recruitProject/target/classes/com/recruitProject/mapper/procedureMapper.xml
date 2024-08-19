@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.recruitproject.mapper.procedureMapper">
+
+
+    <select id="Audit" statementType="CALLABLE" resultType="String">
+        {call Audit(#{jobseekerId,mode = IN,jdbcType = INTEGER},#{pass,mode = IN,jdbcType = VARCHAR},#{status,mode = OUT,jdbcType = VARCHAR})}
+    </select>
+    <select id="jobInfo" resultType="com.recruitproject.pojo.infoJob">
+        {call info_job()}
+    </select>
+    <select id="jobseekerInfo" resultType="com.recruitproject.pojo.infoJobseeker">
+        {call info_jobseeker()}
+    </select>
+    <select id="createHR" statementType="CALLABLE" resultType="java.lang.String">
+        {call create_hr(#{id,mode = IN,jdbcType = CHAR},#{password,mode = IN,jdbcType = CHAR},#{status,mode = OUT,jdbcType = VARCHAR})}
+    </select>
+    <select id="createJobseeker" statementType="CALLABLE" resultType="java.lang.String">
+        {call create_jobseeker(#{id,mode = IN,jdbcType = CHAR},#{password,mode = IN,jdbcType = CHAR},#{status,mode = OUT,jdbcType = VARCHAR})}
+    </select>
+    <select id="submitResume" statementType="CALLABLE" resultType="java.lang.String">
+        {call submitResume(#{sname,mode=IN,jdbcType = CHAR},#{sage,mode = IN,jdbcType = INTEGER},#{ssex,mode = IN,jdbcType = CHAR},#{sdegree,mode = IN,jdbcType = CHAR},#{smajor,mode = IN,jdbcType = CHAR},#{sjobId,mode = IN,jdbcType = CHAR},#{simage,mode = IN,jdbcType = VARCHAR},#{status,mode = OUT,jdbcType = VARCHAR})}
+    </select>
+</mapper>

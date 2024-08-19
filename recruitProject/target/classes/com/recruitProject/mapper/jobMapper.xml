@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.recruitproject.mapper.jobMapper">
+    <sql id="selectJob">
+        select job.id,job.name,techtype,num,dptId,department.name as dptName from job join department on job.dptId = department.id
+    </sql>
+    <update id="updateJob">
+        update job
+        <set>
+            <if test="newId != null">
+                id = #{newId},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="techtype != null">
+                techtype = #{techtype},
+            </if>
+            <if test="num != null">
+                num = #{num},
+            </if>
+            <if test="dptId != null">
+                dptId = #{dptId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <select id="selectJob" resultType="com.recruitproject.pojo.job">
+        <include refid="selectJob"/>
+        <where>
+            <if test="id != null">
+                job.id = #{id}
+            </if>
+            <if test="name != null">
+                and name = #{name}
+            </if>
+            <if test="techtype != null">
+                and techtype = #{techtype}
+            </if>
+            <if test="num != null">
+                and num = #{num}
+            </if>
+            <if test="dptId != null">
+                and dptId = #{dptId}
+            </if>
+        </where>
+    </select>
+    <select id="selectAll" resultType="com.recruitproject.pojo.job">
+        <include refid="selectJob"/>
+        order by job.id
+    </select>
+</mapper>
