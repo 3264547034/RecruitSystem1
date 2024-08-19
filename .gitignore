@@ -1,0 +1,4 @@
+#忽略txt和.doc文件以及.class
+*.doc
+*.txt
+*.class
