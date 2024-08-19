@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.recruitproject.mapper.departmentMapper">
+    <insert id = "insertDepartment">
+        insert into Department(id,name,duty) values(#{id},#{name},#{duty})
+    </insert>
+
+    <update id="updateDepartment">
+        update department
+        <set>
+            <if test="newId != null">
+                id = #{newId},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="duty != null">
+                duty = #{duty},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>

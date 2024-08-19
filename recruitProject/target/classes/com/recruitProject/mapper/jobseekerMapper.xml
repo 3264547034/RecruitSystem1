@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.recruitproject.mapper.jobseekerMapper">
+    <sql id="selectJobseeker">
+        select jobseeker.id,jobseeker.name,age,sex,image,major,degree,job.id as jobId,job.name as jobName from jobseeker join job on jobseeker.jobId = job.id
+    </sql>
+<!--    调用存储过程-->
+    <select id="jobInfo" resultType="com.recruitproject.pojo.infoJob">
+        {call info_job()}
+    </select>
+    <update id="updateJobseeker">
+         update jobseeker
+        <set>
+            <if test="name != null and name != '' ">
+                name = #{name},
+            </if>
+            <if test="sex != null and sex != '' ">
+                sex = #{sex},
+            </if>
+            <if test="age != null and age != '' ">
+                age = #{age},
+            </if>
+            <if test="degree != null and degree != '' ">
+                degree = #{degree},
+            </if>
+            <if test="major != null and major != '' ">
+                major = #{major},
+            </if>
+            <if test="jobId != null and jobId != '' ">
+                major = #{jobId},
+            </if>
+            <if test="image != null and image != '' ">
+                image = #{image},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+<!--    查询-->
+    <select id="selectJobseeker" resultType="com.recruitproject.pojo.jobseeker">
+        <include refid="selectJobseeker"/>
+        <where>
+            <if test="id != null">
+                jobseeker.id = #{id}
+            </if>
+            <if test="name != null">
+                and jobseeker.name like concat('%',#{name},'%')
+            </if>
+            <if test="sex != null">
+                and sex = #{sex}
+            </if>
+            <if test="age != null">
+                and age = #{age}
+            </if>
+            <if test="degree != null">
+                and degree = #{degree}
+            </if>
+            <if test="major != null">
+                and major = #{major}
+            </if>
+            <if test="jobId != null">
+                and job.id = #{jobId}
+            </if>
+            <if test="jobName != null">
+                and job.name = #{jobName}
+            </if>
+        </where>
+    </select>
+</mapper>
