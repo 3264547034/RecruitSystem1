@@ -2,9 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import dptView from '@/views/RecruitSystem/AdminView/dptView.vue'
 import { Result } from 'element-ui'
-
 Vue.use(VueRouter)
-
 const routes = [
   {
     path: '/dpt',
@@ -47,29 +45,8 @@ const router = new VueRouter({
   routes
 })
 import axios from 'axios'
-// // 路由守卫 
-// router.beforeEach((to,from,next)=>{
-//   console.log('Checking token for path:', to.path); // 打印当前要访问的路径  
-//   let token = localStorage.getItem("token");
-//   //console.log('Token:', token); // 打印token值
-//   const requestBody = token
-//   let result;
-//   axios.post("http://localhost:8080/VerifyToken",requestBody).then((result)=>{
-//     // if(result.data.code==="1" || to.path === "/login"){
-//     //   next();
-//     // }
-//     // else{
-//     //   next("/login");
-//     // }
-//     this.result  = result.data.code
-//   })
-//   if(result || to.path === "/login"){
-//     next();
-//   }
-//   else{
-//     next("/login");
-//   }
-// })
+
+//路由守卫
 
 router.beforeEach((to, from, next) => {  
   console.log('Checking token for path:', to.path); // 打印当前要访问的路径  

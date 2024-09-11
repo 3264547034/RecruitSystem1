@@ -8,12 +8,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="recruitProject" />
+        <module name="aliyun-oss-spring-boot-starter" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11" />
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="aliyun-oss-spring-boot-starter" options="-parameters" />
       <module name="recruitProject" options="-parameters" />
     </option>
   </component>

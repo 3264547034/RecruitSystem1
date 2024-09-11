@@ -1,5 +1,6 @@
 package com.recruitproject.controller;
 
+import com.recruitproject.anno.Log;
 import com.recruitproject.pojo.*;
 import com.recruitproject.utils.AliOSSUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -20,18 +21,21 @@ public class jobseekerController {
     private jobseekerServer jobseekerServer;
     //投简历接口
     @PostMapping
+    @Log
     public Result insert(@RequestBody jobseeker jobseeker){
         log.info("投简历");
         jobseekerServer.insertJobseeker(jobseeker);
         return Result.success();
     }
     @DeleteMapping("/{id}")
+    @Log
     public Result delete(@PathVariable Integer id){
         log.info("删除简历");
         jobseekerServer.deleteJobseeker(id);
         return Result.success();
     }
     @PutMapping
+    @Log
     public Result update(@RequestBody jobseeker jobseeker){
         log.info("修改简历");
         jobseekerServer.updateJobseeker(jobseeker);

@@ -1,5 +1,6 @@
 package com.recruitproject.server.Impl;
 
+import com.recruitproject.anno.Log;
 import com.recruitproject.pojo.department;
 import com.recruitproject.server.departmentServer;
 import org.springframework.beans.factory.annotation.Autowired;

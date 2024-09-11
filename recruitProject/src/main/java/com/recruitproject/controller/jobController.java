@@ -1,5 +1,6 @@
 package com.recruitproject.controller;
 
+import com.recruitproject.anno.Log;
 import com.recruitproject.pojo.Result;
 import com.recruitproject.pojo.job;
 import lombok.extern.slf4j.Slf4j;
@@ -18,12 +19,14 @@ public class jobController {
     private jobServer jobServer;
 
     @PostMapping
+    @Log
     public Result insert(@RequestBody job job){
         log.info("添加岗位");
         jobServer.insertJob(job);
         return Result.success();
     }
     @DeleteMapping("/{id}")
+    @Log
     public Result delete(@PathVariable Integer id){
         log.info("删除岗位");
         jobServer.deleteJob(id);
@@ -31,6 +34,7 @@ public class jobController {
     }
 
     @PutMapping
+    @Log
     public Result update(@RequestBody job job){
         log.info("修改岗位");
         jobServer.updateJob(job);

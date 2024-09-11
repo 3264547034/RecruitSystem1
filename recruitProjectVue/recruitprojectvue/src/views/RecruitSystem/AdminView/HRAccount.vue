@@ -104,7 +104,6 @@
 </template>
 <script>
 import axios from 'axios';
-
     export default{
             inject:['reload'],
             data(){

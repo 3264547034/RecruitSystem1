@@ -22,6 +22,7 @@ public class JwtUtils {
                 .compact();
         return jwt;
     }
+    //解析jwt令牌
     public static Claims parseJwt(String jwt){
         Claims claims = Jwts.parser()
                 .setSigningKey(signKey)

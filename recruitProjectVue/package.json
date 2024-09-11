@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "vuex": "^3.6.2",
+    "vuex-persistedstate": "^4.1.0"
+  }
+}

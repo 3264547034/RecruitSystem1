@@ -1,5 +1,6 @@
 package com.recruitproject.server.Impl;
 
+import com.recruitproject.anno.Log;
 import com.recruitproject.pojo.infoJob;
 import com.recruitproject.pojo.job;
 import com.recruitproject.pojo.selectJobseeker;
@@ -18,8 +19,6 @@ public class jobseekerSeverImpl implements jobseekerServer {
     private jobseekerMapper jobseekerMapper;
     @Override
     public void insertJobseeker(jobseeker jobseeker){
-
-
         jobseekerMapper.insertJobseeker(jobseeker);
     }
     @Override

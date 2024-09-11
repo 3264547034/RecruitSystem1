@@ -24,8 +24,9 @@
 
 <script>
     import axios from 'axios';
-
-    export default {
+    import vuex from 'vuex';
+    import persistedState from 'vuex-persistedstate'
+      export default {
         name: "loginView",
         data(){
             return{
@@ -65,8 +66,10 @@
                             type: "success",
                             message: "登录成功",
                         });
-                        this.$router.push('/dpt')
                         localStorage.setItem("token",result.data.data)
+                        this.$store.token = result.data.data
+                        console.log("令牌已经存入localStorage中")
+                        this.$router.push('/dpt')
                     }
                 })
 

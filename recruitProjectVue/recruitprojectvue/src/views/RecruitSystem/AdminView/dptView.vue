@@ -234,8 +234,8 @@ import Header from './HRAccount.vue'
                 axios.get("http://localhost:8080/departments").then((result)=>{
                 this.dptData = result.data.data;
              });
-            }
-
+            },
+            
     }
 </script>
 <style>

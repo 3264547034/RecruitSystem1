@@ -4,13 +4,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
 @Aspect
 public class timeTest {
-    @Around("execution(* com.recruitproject.server.*.*(..))")
+    @Pointcut("@annotation(com.recruitproject.aop.Mylog)")
+    public void pt(){}
+
+    @Around("pt()")
     public Object timeTest(ProceedingJoinPoint proceedingJoinPoint)throws Throwable {
 
         long begin  = System.currentTimeMillis();
@@ -19,6 +23,8 @@ public class timeTest {
         log.info(proceedingJoinPoint.getSignature()+"执行耗时: {}ms",end-begin);
         return result;
     }
+
+
 
 
 }
