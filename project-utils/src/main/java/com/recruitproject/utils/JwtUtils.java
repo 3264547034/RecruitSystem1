@@ -5,10 +5,9 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.stereotype.Component;
 
-import javax.xml.crypto.Data;
 import java.util.Date;
 import java.util.Map;
-import java.util.Objects;
+
 @Component
 public class JwtUtils {
     public static String signKey =  "recruit";

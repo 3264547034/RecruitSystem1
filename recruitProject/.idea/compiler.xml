@@ -8,14 +8,19 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="recruitProject" />
-        <module name="aliyun-oss-spring-boot-starter" />
+        <module name="project-utils" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="11" />
+    <bytecodeTargetLevel target="17">
+      <module name="project-pojo" target="17" />
+      <module name="project-pojo1" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="aliyun-oss-spring-boot-starter" options="-parameters" />
+      <module name="project-pojo" options="-parameters" />
+      <module name="project-pojo1" options="-parameters" />
+      <module name="project-utils" options="-parameters" />
       <module name="recruitProject" options="-parameters" />
     </option>
   </component>

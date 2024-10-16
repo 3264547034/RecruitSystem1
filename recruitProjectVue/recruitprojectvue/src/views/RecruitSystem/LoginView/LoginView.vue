@@ -1,56 +1,57 @@
 <template>
-    <div class="loginbBody">
-        <div class="loginDiv">
-            <div class="login-content">
-                <h1 class="login-title">用户登录</h1>
-                <el-form :model="loginForm" label-width="100px"
-                         :rules="rules" ref="loginForm">
-                    <el-form-item label="名字" prop="uid">
-                        <el-input style="width: 200px" type="text" v-model="loginForm.uid"
-                                  autocomplete="off" size="small"></el-input>
-                    </el-form-item>
-                    <el-form-item label="密码" prop="password">
-                        <el-input style="width: 200px" type="password" v-model="loginForm.password"
-                                  show-password autocomplete="off" size="small"></el-input>
-                    </el-form-item>
-                    <el-form-item>
-                        <el-button type="primary" @click="confirm">确 定</el-button>
-                    </el-form-item>
-                </el-form>
-            </div>
+  <el-container class="custom-container">
+    <el-main>
+      <div class="login-container">
+        <h2>用户登录</h2>
+        <div v-if="errorMessage" class="error-message">
+          {{ errorMessage }}
         </div>
-    </div>
+        <form @submit.prevent="confirm" class="login-form">
+          <input type="text" v-model="uid" placeholder="用户名" required>
+          <div class="password-container">
+            <input
+              :type="showPassword ? 'text' : 'password'"
+              v-model="password"
+              placeholder="密码"
+              required
+            />
+            <button type="button" class="toggle-password" @click="togglePassword">
+              {{ showPassword ? '隐藏' : '显示' }}
+            </button>
+          </div>
+ 
+          <!-- 新增的注册提示 -->
+          <div class="register-prompt">
+            没有用户？ 
+            <router-link to="/login" class="register-link">点击注册</router-link>
+          </div>
+ 
+          <button type="submit">登录</button>
+        </form>
+      </div>
+    </el-main>
+  </el-container>
 </template>
 
 <script>
     import axios from 'axios';
     import vuex from 'vuex';
-    import persistedState from 'vuex-persistedstate'
       export default {
         name: "loginView",
         data(){
             return{
-                loginForm:{
-                    uid:'',
-                    password:''
-                },
-                token:'',
-                rules:{
-                  name: [
-                            { required: true, message: '请输入用户名', trigger: 'blur' },
-                            { min: 3, max: 6, message: '用户名长度在 3 到 6 个字符', trigger: 'blur' }
-                        ],
-                        password: [
-                            { required: true, message: '请输密码', trigger: 'blur' },
-                            { min: 3, max: 6, message: '密码长度在 3 到 6 个字符', trigger: 'blur' }
-                        ]
-                }
+                uid:'',
+                password:'',
+                errorMessage: '',  // 错误信息
+                successMessage: '', // 成功信息
+                showPassword: false, // 控制密码是否明文显示
             }
         },
         methods:{
             confirm(){
                 const requestBody = {
-                    ...this.loginForm,
+                    uid: this.uid,
+                    password: this.password
                 }
                 //axios异步请求向服务器发送post请求
                 axios.post("http://localhost:8080/login",requestBody).then((result)=>{
@@ -66,45 +67,137 @@
                             type: "success",
                             message: "登录成功",
                         });
-                        localStorage.setItem("token",result.data.data)
-                        this.$store.token = result.data.data
+                        this.$store.commit("setToken",result.data.data)
                         console.log("令牌已经存入localStorage中")
                         this.$router.push('/dpt')
                     }
                 })
 
-            }
+            },
+            togglePassword() {
+                this.showPassword = !this.showPassword;
+            },
         }
     }
 </script>
 
 <style scoped >
-    .loginbBody {
-        width: 100%;
-        height: 100%;
-        background-color: #B3C0D1;
-    }
-    .loginDiv {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-top: -200px;
-        margin-left: -250px;
-        width: 450px;
-        height: 330px;
-        background: #fff;
-        border-radius: 5%;
-
-    }
-    .login-title {
-        margin: 20px 0;
-        text-align: center;
-    }
-    .login-content {
-        width: 400px;
-        height: 250px;
-        position: absolute;
-        top: 25px;
-        left: 25px;
-    }
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+}
+ 
+.el-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.login-container {
+  background-color: rgba(255, 255, 255, 0.8); /* 半透明白色背景 */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px; /* 调整表单的最大宽度 */
+  width: 100%; /* 确保容器宽度根据屏幕自适应 */
+  height: 350px;
+  margin: auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* 增强阴影效果 */
+  border: 1px solid #ccc; /* 添加边框 */
+}
+.custom-container {
+  height: 700px;
+  border: 1px solid #eeeeee;
+  background-image: url('../../../assets/loginPicture.png');
+  background-size: cover; /* 根据需要调整背景图片的缩放方式 */
+  background-position: center; /* 背景居中 */
+}
+ 
+h2 {
+  text-align: center;
+  color: #333;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 让输入框和按钮居中 */
+}
+.password-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 4px;
+}
+input {
+  width: 100%;
+  max-width: 300px;
+  margin: 10px 0;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  transition: box-shadow 0.3s ease;
+}
+input:focus {
+  box-shadow: 0 0 8px rgba(74, 144, 226, 0.5);
+  border-color: #4A90E2;
+}
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  width: auto; /* 让按钮宽度自适应文字 */
+  padding: 0;  /* 去掉内边距，避免撑开 */
+  font-size: 14px; /* 控制文字大小 */
+}
+ 
+.register-prompt {
+  text-align: right;
+  width: 100%;
+  max-width: 300px;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+}
+ 
+.register-link {
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+}
+.register-link:hover {
+  text-decoration: underline;
+}
+ 
+button {
+  background: linear-gradient(90deg, #4A90E2, #9013FE); /* 渐变色按钮 */
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
+}
+button:hover {
+  background: linear-gradient(90deg, #357ABD, #7316E5); /* 鼠标悬浮时颜色变化 */
+}
+ 
+.error-message {
+  color: red;
+  text-align: center;
+}
+    
 </style>

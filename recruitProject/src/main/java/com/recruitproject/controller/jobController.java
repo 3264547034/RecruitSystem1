@@ -53,6 +53,6 @@ public class jobController {
         return Result.success(jobs);
 
     }
-
-
 }
+
+

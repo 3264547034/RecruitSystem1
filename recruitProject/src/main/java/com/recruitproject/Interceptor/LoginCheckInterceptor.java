@@ -27,12 +27,8 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
         String url = request.getRequestURI();
         log.info("请求的url："+url);
 
-        if(url.contains("login")){
-            log.info("登录界面放行");
-            return true;
-        }
-
         String Jwt = request.getHeader("Authorization");
+        log.info("请求的令牌："+Jwt);
         if(!StringUtils.hasLength(Jwt)){
             log.info("请求头的令牌为空，未登录");
             Result error = Result.error("NOT_LOGIN");
@@ -58,9 +54,4 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView mav){
         System.out.println("postHandle.....");
     }
-//    @Override
-//    public void afterHandle(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)throws Exception{
-//        System.out.println("afterHandle.....");
-//    }
-
 }

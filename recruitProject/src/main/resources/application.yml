@@ -19,3 +19,17 @@ ali:
 logging:
   level:
     org.springframework.jdbc.support.JdbcTransactionManager: debug
+
+knife4j:
+  enable: true
+  basic:
+    enable: true
+    username: Melody
+    password: 123456
+  setting:
+    enable-dynamic-parameter: true
+
+
+
+
+

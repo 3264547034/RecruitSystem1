@@ -1,5 +1,6 @@
 package com.recruitproject.controller;
 
+import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import com.recruitproject.anno.Log;
 import com.recruitproject.aop.Mylog;
 import com.recruitproject.pojo.Result;
@@ -18,7 +19,7 @@ public class departmentController {
     @Autowired
     private departmentServer departmentServer;
 
-
+    @ApiOperationSupport(author = "Melody")
     @PostMapping("/departments")
     @Log
     public Result insert(@RequestBody department department){
@@ -26,6 +27,7 @@ public class departmentController {
         departmentServer.insertDepartment(department);
         return Result.success();
     }
+
     @DeleteMapping("/departments/{id}")
     @Log
     public Result delete(@PathVariable Integer id){
