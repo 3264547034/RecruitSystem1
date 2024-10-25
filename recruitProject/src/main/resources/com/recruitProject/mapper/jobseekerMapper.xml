@@ -34,6 +34,9 @@
             <if test="image != null and image != '' ">
                 image = #{image},
             </if>
+            <if test="updateTime != null">
+                    updateTime = #{updateTime},
+            </if>
         </set>
         where id = #{id}
     </update>
@@ -64,6 +67,26 @@
             </if>
             <if test="jobName != null">
                 and job.name = #{jobName}
+            </if>
+        </where>
+    </select>
+    <select id="pageQuery" resultType="com.recruitproject.pojo.jobseeker">
+        select jobseeker.id,jobseeker.name,age,sex,image,major,degree,job.id as jobId,job.name as jobName,recruit.pass as pass from jobseeker join job on jobseeker.jobId = job.id join recruit on jobseeker.id = recruit.jobseekerId
+        <where>
+            <if test ="name != null and name != '' ">
+                jobseeker.name like concat('%',#{name},'%')
+            </if>
+            <if test ="sex != null and sex != '' ">
+                    and jobseeker.sex = #{sex}
+            </if>
+            <if test ="degree != null and degree != '' ">
+                    and jobseeker.degree = #{degree}
+            </if>
+            <if test ="major != null and major != '' ">
+                    and jobseeker.major = #{major}
+            </if>
+            <if test ="jobId != null and jobId != '' ">
+                    and job.id = #{jobId}
             </if>
         </where>
     </select>

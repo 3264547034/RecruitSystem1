@@ -4,18 +4,35 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Result {
+public class Result<T> implements Serializable {
     public Integer code;
     public String message;
-    public Object data;
-    public static Result success(){
-        return new Result(1,"success",null);
+    public T data;
+
+
+    public static <T> Result<T> success(){
+        Result<T> result = new Result<>();
+        result.code = 1;
+        result.message = "success";
+        result.data = null;
+        return result;
     }
-    public static Result success(Object data){
-        return new Result(1,"message",data);
+    public static <T> Result<T> success(T Object){
+        Result<T> result = new Result<>();
+        result.code = 1;
+        result.message = "success";
+        result.data = Object;
+        return result;
     }
-    public static Result error(String message) {return new Result(0,message,null);}
+    public static <T> Result<T> error(String message){
+        Result<T> result = new Result<>();
+        result.code = 0;
+        result.message = "message";
+        return result;
+    }
 }

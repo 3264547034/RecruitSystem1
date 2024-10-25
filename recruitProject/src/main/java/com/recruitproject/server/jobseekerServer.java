@@ -1,9 +1,6 @@
 package com.recruitproject.server;
 
-import com.recruitproject.pojo.infoJob;
-import com.recruitproject.pojo.job;
-import com.recruitproject.pojo.jobseeker;
-import com.recruitproject.pojo.selectJobseeker;
+import com.recruitproject.pojo.*;
 
 import java.util.List;
 
@@ -13,4 +10,6 @@ public interface jobseekerServer {
     void updateJobseeker(jobseeker jobseeker);
     List<jobseeker> selectJobseeker(jobseeker jobseeker);
     List<jobseeker> selectAll();
+
+    pageResult pageQuery(jobseekerPageQueryDTO jobseekerPageQueryDTO);
 }

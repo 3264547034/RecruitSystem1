@@ -70,14 +70,23 @@
             <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
+        <!-- pagehelper 分页插件-->
 
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>2.1.0</version>
+        </dependency>
 
         <!--        aop切面依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
+<!--        数据分页-->
+
     </dependencies>
+
 
     <build>
         <plugins>

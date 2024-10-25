@@ -15,7 +15,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         // 对knife4j的请求不进行拦截
         String[] excludePatterns = new String[]{"/swagger-resources/**", "/webjars/**", "/v3/**", "/swagger-ui.html/**",
-                "/api", "/api-docs", "/api-docs/**", "/doc.html/**","/login/**"};
+                "/api", "/api-docs", "/api-docs/**", "/doc.html/**","/login/**","/upload/**"};
 
         registry.addInterceptor(loginCheckInterceptor)
                 // 拦截所有请求
