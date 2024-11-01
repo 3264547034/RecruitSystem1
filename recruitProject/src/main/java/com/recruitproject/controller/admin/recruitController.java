@@ -1,4 +1,4 @@
-package com.recruitproject.controller;
+package com.recruitproject.controller.admin;
 
 import com.recruitproject.pojo.Result;
 import com.recruitproject.pojo.recruit;

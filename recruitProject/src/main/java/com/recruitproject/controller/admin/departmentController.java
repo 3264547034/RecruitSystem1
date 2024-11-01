@@ -1,4 +1,4 @@
-package com.recruitproject.controller;
+package com.recruitproject.controller.admin;
 
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import com.recruitproject.anno.Log;
@@ -19,6 +19,12 @@ public class departmentController {
     @Autowired
     private departmentServer departmentServer;
 
+
+    /**
+     * 新增部门
+     * @param department
+     * @return
+     */
     @ApiOperationSupport(author = "Melody")
     @PostMapping("/departments")
     @Log
@@ -27,7 +33,11 @@ public class departmentController {
         departmentServer.insertDepartment(department);
         return Result.success();
     }
-
+    /**
+     * 删除部门
+     * @param id          部门id
+     * @return
+     */
     @DeleteMapping("/departments/{id}")
     @Log
     public Result delete(@PathVariable Integer id){
@@ -36,6 +46,10 @@ public class departmentController {
         return Result.success();
     }
 
+    /**
+     * 查询所有部门信息
+     * @return
+     */
     @Mylog
     @GetMapping("/departments")
     public Result select(){
@@ -43,7 +57,11 @@ public class departmentController {
         List<department> departments =  departmentServer.selectDepartment();
         return Result.success(departments);
     }
-
+    /**
+     * 修改部门信息
+     * @param department
+     * @return
+     */
     @PutMapping("/departments")
     @Log
     public Result update(@RequestBody department department){

@@ -1,7 +1,10 @@
-<template>      
-                <div>
-                    招聘管理系统<el-button type="primary" round  @click="logOUt">退出登录</el-button>
-                </div>
+<template> 
+
+        <div>
+            <span class="title">招聘管理系统</span>
+                <el-button type="primary" round  @click="logOUt" class="button">退出登录</el-button>
+
+        </div>
 </template>
 
 <script>
@@ -21,6 +24,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+    .button{
+        float: right;
+    }
+    .title{
+        text-align: center;
+    }
+    
 
 </style>

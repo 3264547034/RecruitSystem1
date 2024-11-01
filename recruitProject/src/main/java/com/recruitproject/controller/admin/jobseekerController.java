@@ -1,4 +1,4 @@
-package com.recruitproject.controller;
+package com.recruitproject.controller.admin;
 
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import com.recruitproject.anno.Log;

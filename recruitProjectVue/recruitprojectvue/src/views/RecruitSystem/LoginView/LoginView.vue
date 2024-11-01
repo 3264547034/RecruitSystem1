@@ -81,7 +81,7 @@
     }
 </script>
 
-<style scoped >
+<style scoped>
 body {
   font-family: Arial, sans-serif;
   display: flex;
@@ -111,11 +111,16 @@ body {
   border: 1px solid #ccc; /* 添加边框 */
 }
 .custom-container {
-  height: 700px;
-  border: 1px solid #eeeeee;
-  background-image: url('../../../assets/loginPicture.png');
-  background-size: cover; /* 根据需要调整背景图片的缩放方式 */
-  background-position: center; /* 背景居中 */
+  height: 100vh; /* 使容器高度等于视口高度 */  
+  width: 100vw;  /* 使容器宽度等于视口宽度 */  
+  border: 1px solid #eeeeee;  
+  background-image: url('../../../assets/loginPicture2.png');  
+  background-size: cover; /* 背景图片覆盖整个容器 */  
+  background-position: center; /* 背景图片居中 */  
+  margin: 0; /* 移除任何默认的外边距 */  
+  padding: 0; /* 移除任何默认的内边距 */  
+  box-sizing: border-box; /* 确保内边距和边框不会增加容器的总尺寸 */  
+  overflow: hidden; /* 防止内容溢出容器 */ 
 }
  
 h2 {

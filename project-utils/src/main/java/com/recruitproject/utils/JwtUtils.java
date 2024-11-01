@@ -11,7 +11,7 @@ import java.util.Map;
 @Component
 public class JwtUtils {
     public static String signKey =  "recruit";
-    public static Long expire = 60000000L;
+    public static Long expire = 60000000000L;
     //生产Jwt令牌
     public static String generateJwt(Map<String, Object> claims){
         String jwt = Jwts.builder()

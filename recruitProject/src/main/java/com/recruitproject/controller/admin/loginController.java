@@ -1,4 +1,4 @@
-package com.recruitproject.controller;
+package com.recruitproject.controller.admin;
 
 import com.alibaba.fastjson.JSONObject;
 import com.recruitproject.pojo.HR;
