@@ -1,5 +1,6 @@
 package com.recruitproject.utils;
 import com.alibaba.fastjson.JSONObject;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -12,6 +13,8 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URI;
@@ -19,6 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
+@Component
 /**
  * Http工具类
  */
@@ -73,7 +78,7 @@ public class HttpClientUtil {
     }
 
     /**
-     * 发送POST方式请求
+     * 发送POST方式请求 以表单形式提交
      * @param url
      * @param paramMap
      * @return
@@ -120,7 +125,7 @@ public class HttpClientUtil {
     }
 
     /**
-     * 发送POST方式请求
+     * 发送POST方式请求 json格式数据
      * @param url
      * @param paramMap
      * @return

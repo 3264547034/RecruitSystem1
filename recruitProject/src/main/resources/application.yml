@@ -37,6 +37,12 @@ knife4j:
   setting:
     enable-dynamic-parameter: true
 
+recruitproject:
+  jwt:
+    admin-secret-key : recruit
+    admin-Ttl : 6000000000L
+
+
 
 
 
